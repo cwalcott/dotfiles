@@ -15,6 +15,11 @@ alias v="$VISUAL"
 
 # git
 alias gci="git pull --rebase && rake && git push"
+alias gd='git diff'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gd='git diff'
+alias gitup='git fetch; git remote prune origin'
 
 # Bundler
 alias b="bundle"
@@ -36,3 +41,6 @@ alias z="zeus"
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
+
+# Other
+alias rtps='rake test:parallel_with_specs'
