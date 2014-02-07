@@ -6,6 +6,14 @@ git_prompt_info() {
   fi
 }
 
+# show if working tree is dirty
+parse_git_dirty() {
+  git_status=$(git status -s 2> /dev/null)
+  if [[ -n $git_status ]]; then
+    echo " %{$fg[yellow]%}✗%{$reset_color%}"
+  fi
+}
+
 # makes color constants available
 autoload -U colors
 colors
@@ -17,7 +25,7 @@ export CLICOLOR=1
 setopt promptsubst
 
 # prompt
-export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%~%{$reset_color%}] '
+export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%~%{$reset_color%}]$(parse_git_dirty) '
 
 # load thoughtbot/dotfiles scripts
 export PATH="$HOME/.bin:$PATH"
