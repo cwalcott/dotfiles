@@ -21,12 +21,12 @@
   autocrlf = input
 [merge]
   ff = only
-[include]
-  path = .gitconfig.local
-[commit]
-  template = ~/.gitmessage
 [user]
   name=Costa Walcott
   email=cwalcott@gmail.com
 [credential]
   helper = osxkeychain
+[include]
+  path = .gitconfig.local
+[commit]
+  template = ~/.gitmessage
