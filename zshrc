@@ -56,6 +56,9 @@ fi
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"
 
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
