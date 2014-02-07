@@ -14,6 +14,8 @@
   pr = !hub pull-request
   st = status
   up = !git fetch origin && git rebase origin/master
+  lb = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
+  l = log --all --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
@@ -23,3 +25,6 @@
   path = .gitconfig.local
 [commit]
   template = ~/.gitmessage
+[user]
+  name=Costa Walcott
+  email=cwalcott@gmail.com
