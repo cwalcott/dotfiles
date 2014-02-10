@@ -30,5 +30,9 @@ export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$f
 # load thoughtbot/dotfiles scripts
 export PATH="$HOME/.bin:$PATH"
 
+# oh-my-zsh style termsupport
+termsupport="$HOME/dotfiles/scripts/termsupport.zsh"
+[[ -f $termsupport ]] && source $termsupport
+
 # Local config
 [[ -f ~/.zlogin.local ]] && source ~/.zlogin.local
