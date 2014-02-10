@@ -57,6 +57,14 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+# Scripts
+if [[ -d "$HOME/dotfiles/scripts" ]] ; then
+  source "$HOME/dotfiles/scripts/termsupport.zsh"
+  source "$HOME/dotfiles/scripts/history.zsh"
+  source "$HOME/dotfiles/scripts/zsh-history-substring-search.zsh"
+  source "$HOME/dotfiles/scripts/zsh-history-substring-search-bindings.zsh"
+fi
+
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
