@@ -41,6 +41,9 @@ alias rk="rake"
 alias s="rspec"
 alias z="zeus"
 
+# Xcode
+alias podr="rm -rf Pods Podfile.lock ; pod install"
+
 # Other
 alias vi='vim'
 alias rtps='rake test:parallel_with_specs'
