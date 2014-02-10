@@ -47,6 +47,7 @@ alias podr="rm -rf Pods Podfile.lock ; pod install"
 # Other
 alias vi='vim'
 alias rtps='rake test:parallel_with_specs'
+alias history='fc -l 1'
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local

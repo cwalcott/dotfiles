@@ -9,11 +9,6 @@ for function in ~/.zsh/functions/*; do
   source $function
 done
 
-# history settings
-setopt histignoredups
-SAVEHIST=4096
-HISTSIZE=4096
-
 # awesome cd movements from zshkit
 setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
 DIRSTACKSIZE=5

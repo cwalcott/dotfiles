@@ -31,8 +31,12 @@ export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$f
 export PATH="$HOME/.bin:$PATH"
 
 # oh-my-zsh style termsupport
-termsupport="$HOME/dotfiles/scripts/termsupport.zsh"
-[[ -f $termsupport ]] && source $termsupport
+termsupport_zsh="$HOME/dotfiles/scripts/termsupport.zsh"
+[[ -f $termsupport_zsh ]] && source $termsupport_zsh
+
+# history from oh-my-zsh
+history_zsh="$HOME/dotfiles/scripts/history.zsh"
+[[ -f $history_zsh ]] && source $history_zsh
 
 # Local config
 [[ -f ~/.zlogin.local ]] && source ~/.zlogin.local
