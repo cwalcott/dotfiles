@@ -14,7 +14,7 @@ alias e="$EDITOR"
 alias v="$VISUAL"
 
 # git
-alias gci="git pull --rebase && rake && git push"
+alias gb='git branch'
 alias gd='git diff'
 alias gc='git commit -v'
 alias gca='git commit -v -a'
