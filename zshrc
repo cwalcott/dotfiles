@@ -65,6 +65,9 @@ if [[ -d "$HOME/dotfiles/scripts" ]] ; then
   source "$HOME/dotfiles/scripts/zsh-history-substring-search-bindings.zsh"
 fi
 
+# cdpath
+cdpath=$HOME/Development
+
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
