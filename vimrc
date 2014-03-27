@@ -14,3 +14,6 @@ endif
 
 " Enable file type detection and do language-dependent indenting.
 filetype plugin indent on
+
+set tabstop=2
+set shiftwidth=2
