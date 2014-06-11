@@ -8,6 +8,7 @@ set backspace=indent,eol,start
 " Switch syntax highlighting on
 syntax on
 
+" Local config
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif

@@ -1,3 +1,19 @@
+# modify the prompt to contain git branch name if applicable
+git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null)
+  if [[ -n $ref ]]; then
+    echo "[%{$fg_bold[green]%}${ref#refs/heads/}%{$reset_color%}]"
+  fi
+}
+parse_git_dirty() {
+  git_status=$(git status -s 2> /dev/null)
+  if [[ -n $git_status ]]; then
+    echo " %{$fg[yellow]%}✗%{$reset_color%}"
+  fi
+}
+setopt promptsubst
+export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%~%{$reset_color%}]$(parse_git_dirty) '
+
 # load our own completion functions
 fpath=(~/.zsh/completion $fpath)
 
@@ -5,22 +21,27 @@ fpath=(~/.zsh/completion $fpath)
 autoload -U compinit
 compinit
 
+# load custom executable functions
 for function in ~/.zsh/functions/*; do
   source $function
 done
 
+# makes color constants available
+autoload -U colors
+colors
+
+# enable colored output from ls, etc
+export CLICOLOR=1
+
 # history settings
-setopt histignoredups
-HISTFILE=~/.zsh_history
+setopt hist_ignore_all_dups inc_append_history
+HISTFILE=~/.zhistory
 HISTSIZE=4096
 SAVEHIST=4096
 
 # awesome cd movements from zshkit
 setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
 DIRSTACKSIZE=5
-
-# Try to correct command line spelling
-setopt correct correctall
 
 # Enable extended globbing
 setopt extendedglob
@@ -46,13 +67,13 @@ bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-# look for ey config in project dirs
-export EYRC=./.eyrc
-
 # load rbenv if available
 if which rbenv &>/dev/null ; then
   eval "$(rbenv init - --no-rehash)"
 fi
+
+# load thoughtbot/dotfiles scripts
+export PATH="$HOME/.bin:$PATH"
 
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"
