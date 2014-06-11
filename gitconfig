@@ -19,6 +19,7 @@
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
+  quotepath = false
 [merge]
   ff = only
 [user]
