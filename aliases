@@ -27,13 +27,13 @@ alias gs='git status'
 alias b="bundle"
 
 # Tests and Specs
-alias t="ruby -I test"
+alias s="spring rspec"
+alias t="spring testunit"
 
 # Rails
 alias migrate="rake db:migrate db:rollback && rake db:migrate"
 alias m="migrate"
 alias rk="rake"
-alias s="rspec"
 
 # Xcode
 alias podr="rm -rf Pods Podfile.lock ; pod install"
