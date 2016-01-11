@@ -102,3 +102,7 @@ cdpath=$HOME/Development
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:/Applications/android-sdk-macosx/platform-tools" # Add Android Platform Tools to PATH
+
+#Hierarchy Viewer Variable
+export ANDROID_HVPROTO=ddm
