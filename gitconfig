@@ -14,8 +14,8 @@
   pr = !hub pull-request
   st = status
   up = !git fetch origin && git rebase origin/master
-  lb = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
-  l = log --all --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
+  lb = log --graph --pretty=format':%C(auto)%h%d %s %an, %ar'
+  l = log --all --graph --pretty=format':%C(auto)%h%d %s  %an, %ar'
 [core]
   excludesfile = ~/.gitignore
 	autocrlf = false
