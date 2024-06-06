@@ -102,7 +102,7 @@ cdpath=$HOME/Development
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="$PATH:/Users/cwalcott/Library/Android/sdk/platform-tools" # Add Android Platform Tools to PATH
+export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools" # Add Android Platform Tools to PATH
 
 #Hierarchy Viewer Variable
 export ANDROID_HVPROTO=ddm
@@ -110,4 +110,7 @@ export ANDROID_HVPROTO=ddm
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/cwalcott/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
-export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
+td() {
+    local id="$1"
+    TwitchDownloaderCLI chatdownload -o ~/SynologyDrive/chats/${id}.txt --id "$id"
+}
