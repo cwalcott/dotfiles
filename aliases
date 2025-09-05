@@ -29,11 +29,6 @@ alias b="bundle"
 alias s="spring rspec"
 alias t="spring testunit"
 
-# Rails
-alias migrate="rake db:migrate db:rollback && rake db:migrate"
-alias m="migrate"
-alias rk="rake"
-
 # Xcode
 alias podr="rm -rf Pods Podfile.lock ; pod install"
 
@@ -41,6 +36,10 @@ alias podr="rm -rf Pods Podfile.lock ; pod install"
 alias vi='vim'
 alias rtps='rake test:parallel_with_specs'
 alias history='fc -l 1'
+
+# Node.js
+alias tn='node --import=tsx --env-file=.env'
+alias m='npx mocha'
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
