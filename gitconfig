@@ -14,8 +14,8 @@
   pr = !hub pull-request
   st = status
   up = !git fetch origin && git rebase origin/master
-  lb = log --graph --pretty=format':%C(auto)%h%d %s %an, %ar'
   l = log --all --graph --pretty=format':%C(auto)%h%d %s  %an, %ar'
+  lb = log --branches --graph --pretty=format':%C(auto)%h%d %s %an, %ar'
 [core]
   excludesfile = ~/.gitignore
 	autocrlf = false
