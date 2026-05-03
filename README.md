@@ -2,5 +2,5 @@
 
 ### Install with stow:
 ```bash
-stow .
+stow */
 ```
