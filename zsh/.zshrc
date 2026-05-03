@@ -72,7 +72,6 @@ if which rbenv &>/dev/null ; then
   eval "$(rbenv init - --no-rehash)"
 fi
 
-# load thoughtbot/dotfiles scripts
 export PATH="$HOME/.bin:$PATH"
 
 # mkdir .git/safe in the root of repositories you trust
@@ -85,12 +84,10 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Scripts
-if [[ -d "$HOME/dotfiles/scripts" ]] ; then
-  source "$HOME/dotfiles/scripts/termsupport.zsh"
-  source "$HOME/dotfiles/scripts/history.zsh"
-  source "$HOME/dotfiles/scripts/zsh-history-substring-search.zsh"
-  source "$HOME/dotfiles/scripts/zsh-history-substring-search-bindings.zsh"
-fi
+source "$HOME/.zsh/scripts/termsupport.zsh"
+source "$HOME/.zsh/scripts/history.zsh"
+source "$HOME/.zsh/scripts/zsh-history-substring-search.zsh"
+source "$HOME/.zsh/scripts/zsh-history-substring-search-bindings.zsh"
 
 # cdpath
 cdpath=$HOME/Development
