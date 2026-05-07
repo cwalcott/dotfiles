@@ -33,7 +33,7 @@ alias t="spring testunit"
 alias podr="rm -rf Pods Podfile.lock ; pod install"
 
 # Other
-alias vi='vim'
+alias vi='nvim'
 alias rtps='rake test:parallel_with_specs'
 alias history='fc -l 1'
 
