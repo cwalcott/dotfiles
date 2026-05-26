@@ -111,3 +111,5 @@ td() {
     local id="$1"
     TwitchDownloaderCLI chatdownload -o ~/SynologyDrive/chats/${id}.txt --id "$id"
 }
+
+eval "$(starship init zsh)"
