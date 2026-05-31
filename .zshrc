@@ -64,14 +64,6 @@ export PATH=".git/safe/../../bin:$PATH"
 # For homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
-# Scripts
-source "$HOME/.zsh/scripts/history.zsh"
-source "$HOME/.zsh/scripts/zsh-history-substring-search.zsh"
-source "$HOME/.zsh/scripts/zsh-history-substring-search-bindings.zsh"
-
-# cdpath
-cdpath=$HOME/Development
-
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
@@ -92,3 +84,7 @@ td() {
 }
 
 eval "$(starship init zsh)"
+
+source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
