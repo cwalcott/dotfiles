@@ -1,3 +1,14 @@
 theme = Catppuccin Mocha
+
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
+keybind = cmd+k=clear_screen
+
 bell-features = system
+
+macos-option-as-alt = true
+font-thicken = true
+
+cursor-style = block
+cursor-style-blink = false
+
+shell-integration-features = no-cursor,title,sudo,ssh-terminfo
