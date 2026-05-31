@@ -1,19 +1,3 @@
-# modify the prompt to contain git branch name if applicable
-git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null)
-  if [[ -n $ref ]]; then
-    echo "[%{$fg_bold[green]%}${ref#refs/heads/}%{$reset_color%}]"
-  fi
-}
-parse_git_dirty() {
-  git_status=$(git status -s 2> /dev/null)
-  if [[ -n $git_status ]]; then
-    echo " %{$fg[yellow]%}✗%{$reset_color%}"
-  fi
-}
-setopt promptsubst
-export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%~%{$reset_color%}]$(parse_git_dirty) '
-
 # load our own completion functions
 fpath=(~/.zsh/completion $fpath)
 
@@ -64,7 +48,7 @@ bindkey "^N" insert-last-word
 bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 
 # use vim as the visual editor
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR=$VISUAL
 
 # load rbenv if available
@@ -80,11 +64,7 @@ export PATH=".git/safe/../../bin:$PATH"
 # For homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Scripts
-source "$HOME/.zsh/scripts/termsupport.zsh"
 source "$HOME/.zsh/scripts/history.zsh"
 source "$HOME/.zsh/scripts/zsh-history-substring-search.zsh"
 source "$HOME/.zsh/scripts/zsh-history-substring-search-bindings.zsh"
@@ -98,7 +78,6 @@ cdpath=$HOME/Development
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools" # Add Android Platform Tools to PATH
 
 #Hierarchy Viewer Variable
