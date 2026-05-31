@@ -35,7 +35,6 @@ unsetopt nomatch
 
 # vi mode
 bindkey -v
-bindkey "^F" vi-cmd-mode
 bindkey jj vi-cmd-mode
 
 # handy keybindings
@@ -58,9 +57,6 @@ fi
 
 export PATH="$HOME/.bin:$PATH"
 
-# mkdir .git/safe in the root of repositories you trust
-export PATH=".git/safe/../../bin:$PATH"
-
 # For homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
@@ -71,12 +67,6 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools" # Add Android Platform Tools to PATH
-
-#Hierarchy Viewer Variable
-export ANDROID_HVPROTO=ddm
-
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/cwalcott/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 td() {
     local id="$1"
