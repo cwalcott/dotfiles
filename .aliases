@@ -10,8 +10,14 @@ alias -g G='| grep'
 alias -g M='| less'
 alias -g L='| wc -l'
 alias -g ONE="| awk '{ print \$1}'"
-alias e="$EDITOR"
-alias v="$VISUAL"
+
+# ls
+alias ls='eza'
+alias ll='eza -l --git'
+alias la='eza -la --git'
+
+# tree
+alias tree='eza --tree'
 
 # git
 alias gb='git branch'
@@ -21,20 +27,10 @@ alias gca='git commit -v -a'
 alias gco='git checkout'
 alias gd='git diff'
 alias gs='git status'
-
-# Bundler
-alias b="bundle"
-
-# Tests and Specs
-alias s="spring rspec"
-alias t="spring testunit"
-
-# Xcode
-alias podr="rm -rf Pods Podfile.lock ; pod install"
+alias gw='git worktree'
 
 # Other
 alias vi='nvim'
-alias rtps='rake test:parallel_with_specs'
 alias history='fc -l 1'
 
 # Node.js
