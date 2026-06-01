@@ -1,7 +1,9 @@
 theme = Catppuccin Mocha
 
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
-keybind = cmd+k=clear_screen
+
+keybind = super+k=clear_screen
+keybind = chain=clear_screen
 
 bell-features = system
 
