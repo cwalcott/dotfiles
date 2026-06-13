@@ -14,3 +14,6 @@ cursor-style = block
 cursor-style-blink = false
 
 shell-integration-features = no-cursor,title,sudo,ssh-terminfo
+
+window-inherit-working-directory = false
+tab-inherit-working-directory = true
