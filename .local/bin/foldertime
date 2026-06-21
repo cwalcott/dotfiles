@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+"""
+set_folder_mtimes.py
+
+Recursively set each folder's modification time to the MOST RECENT modification
+time among its children (immediate files and subfolders).
+
+Because processing is depth-first (bottom-up), each subfolder already holds the
+most recent mtime of its own subtree by the time its parent is processed -- so
+every folder ends up with the most recent mtime in its entire subtree.
+
+Usage:
+    python3 set_folder_mtimes.py PATH [options]
+
+Examples:
+    python3 set_folder_mtimes.py ~/Documents/archive
+    python3 set_folder_mtimes.py ~/Documents/archive --dry-run
+    python3 set_folder_mtimes.py . --include-hidden   # also count dotfiles
+"""
+
+import argparse
+import os
+import sys
+from datetime import datetime
+
+
+def fmt(ts: float) -> str:
+    return datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Set each folder's mtime to the most recent mtime of its "
+        "children, recursively, depth-first.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "path",
+        help="Root folder to process (required).",
+    )
+    parser.add_argument(
+        "-n",
+        "--dry-run",
+        action="store_true",
+        help="Show what would change without modifying anything.",
+    )
+    parser.add_argument(
+        "--include-hidden",
+        action="store_true",
+        help="Include hidden (dot) files and folders when computing the date. "
+        "By default they're ignored.",
+    )
+    parser.add_argument(
+        "-q",
+        "--quiet",
+        action="store_true",
+        help="Only print folders that actually change.",
+    )
+    args = parser.parse_args()
+
+    root = os.path.abspath(os.path.expanduser(args.path))
+    if not os.path.isdir(root):
+        print(f"error: not a directory: {root}", file=sys.stderr)
+        return 1
+
+    changed = 0
+    skipped_empty = 0
+    errors = 0
+
+    # topdown=False -> each directory is yielded AFTER its subdirectories,
+    # giving us the depth-first (bottom-up) order we need.
+    # followlinks defaults to False, so symlinked dirs aren't traversed.
+    for dirpath, dirnames, filenames in os.walk(root, topdown=False):
+        entries = dirnames + filenames
+        if not args.include_hidden:
+            entries = [e for e in entries if not e.startswith(".")]
+
+        mtimes = []
+        for name in entries:
+            child = os.path.join(dirpath, name)
+            try:
+                mtimes.append(os.lstat(child).st_mtime)  # don't follow symlinks
+            except OSError as e:
+                errors += 1
+                print(f"  ! could not stat {child}: {e}", file=sys.stderr)
+
+        if not mtimes:
+            skipped_empty += 1
+            continue
+
+        target = max(mtimes)  # most recent child
+
+        try:
+            st = os.lstat(dirpath)
+        except OSError as e:
+            errors += 1
+            print(f"  ! could not stat {dirpath}: {e}", file=sys.stderr)
+            continue
+
+        current = st.st_mtime
+        # Compare with a small tolerance to avoid churn from float rounding.
+        will_change = abs(current - target) > 1e-6
+
+        if will_change:
+            changed += 1
+            verb = "would set" if args.dry_run else "set"
+            print(f"{verb}: {dirpath}")
+            print(f"         {fmt(current)}  ->  {fmt(target)}  (most recent child)")
+            if not args.dry_run:
+                try:
+                    os.utime(dirpath, (st.st_atime, target))  # preserve atime
+                except OSError as e:
+                    errors += 1
+                    changed -= 1
+                    print(f"  ! could not set time on {dirpath}: {e}",
+                          file=sys.stderr)
+        elif not args.quiet:
+            print(f"ok:      {dirpath}  (already {fmt(current)})")
+
+    print()
+    mode = "DRY RUN -- nothing modified" if args.dry_run else "done"
+    print(f"{mode}: {changed} folder(s) "
+          f"{'would change' if args.dry_run else 'changed'}, "
+          f"{skipped_empty} empty skipped, {errors} error(s).")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
